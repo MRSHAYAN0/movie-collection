@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function App() {
   const [movies, setMovies] = useState();
@@ -9,9 +10,9 @@ function App() {
 
   const searchUrl = `https://moviesapi.ir/api/v1/movies?q=${searchWords}`;
 
-  useEffect(() => {
-    axios.get(searchUrl).then((res) => setMovies(res.data.data));
-  }, [searchUrl]);
+  // useEffect(() => {
+  //   axios.get(searchUrl).then((res) => setMovies(res.data.data));
+  // }, [searchUrl]);
 
   useEffect(() => {
     axios.get(url).then((res) => setMovies(res.data.data));
@@ -41,6 +42,7 @@ function App() {
             <div key={i} className="w-[20%]">
               <h2>{movie.title}</h2>
               <img src={movie.poster} alt="" />
+              <Link to={`/movie/${movie.id}`}>more info</Link>
             </div>
           ))}
       </div>
