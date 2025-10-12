@@ -2,16 +2,24 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [movies, setmovies] = useState();
+  const [movies, setMovies] = useState();
   const [page, setPage] = useState(1);
+  const [searchWords, setSearchWords] = useState();
   const url = `https://moviesapi.ir/api/v1/movies?page=${page}`;
 
+  const searchUrl = `https://moviesapi.ir/api/v1/movies?q=${searchWords}`;
+
   useEffect(() => {
-    axios.get(url).then((res) => setmovies(res.data.data));
+    axios.get(searchUrl).then((res) => setMovies(res.data.data));
+  }, [searchUrl]);
+
+  useEffect(() => {
+    axios.get(url).then((res) => setMovies(res.data.data));
   }, [url]);
 
   return (
     <>
+      <input type="text" onChange={(e) => setSearchWords(e.target.value)} />
       <button
         className="bg-amber-400 p-2 m-2 cursor-pointer"
         onClick={() => page > 1 && setPage(page - 1)}
@@ -39,5 +47,4 @@ function App() {
     </>
   );
 }
-
 export default App;
