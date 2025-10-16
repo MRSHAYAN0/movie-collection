@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import SingleMovie from "./SingleMovie";
-import Genres from "./Genres";
+import Genre from "./Genre";
 
 export const router = createBrowserRouter([
   {
@@ -12,5 +12,5 @@ export const router = createBrowserRouter([
     path: "/movie/:id",
     element: <SingleMovie />,
   },
-  { path: "/genres", element: <Genres /> },
+  { path: "/genre/:id", element: <Genre /> },
 ]);
